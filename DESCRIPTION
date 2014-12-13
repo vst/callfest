@@ -1,0 +1,12 @@
+Package: callfest
+Title: Calls functions with combinations of arguments provided
+Version: 0.0-1
+Authors@R: "Vehbi Sinan Tunaliogly <vst@vsthost.com> [aut, cre]"
+Description: callfest provides functionality to test functions
+    on a set of arguments which are combinations of provided
+    options for each named argument. This is useful for testing
+    corner cases and doing some regression tests.
+Depends:
+    R (>= 3.1.0)
+License: GPL
+LazyData: true
