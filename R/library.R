@@ -1,13 +1,12 @@
 ##' Calls a function over a list of arguments which are combinations
 ##' of the provided dotted arguments.
 ##'
-##' @param ... List of arguments which will be used for combinations.
 ##' @param FUN The function to be applied to combinations.
-##' @param N The number of function invokations to each of combinations.
+##' @param ... List of arguments which will be used for combinations.
 ##' @return An instance of class \code{callfest} which encapsulates
 ##' results and the elapsed time.
 ##' @export
-callfest <- function (..., FUN=list, N=1) {
+callfest <- function (FUN, ...) {
   ## Get argument list:
   arguments <- list(...)
 
@@ -21,21 +20,18 @@ callfest <- function (..., FUN=list, N=1) {
 
   ## Iterate over combinations and apply function to each argument:
   elapsed <- system.time(results <- lapply(combinations, function (x) {
-    ## Apply N times:
-    results <- lapply(1:N, function (i) do.call(FUN, x))
-
-    ## Return the elapsed time and result seperately:
-    results
+    ## Apply the function and return:
+    do.call(FUN, x)
   }))
 
   ## Prepare the return value:
-  retval <- list(elapsed=elapsed, results=results)
+  attr(results, "time") <- elapsed
 
   ## Change the class:
-  class(retval) <- "callfest"
+  class(results) <- "callfest"
 
   ## Done, return the value:
-  retval
+  results
 }
 
 ##' Pretty prints the \code{callfest} instance
@@ -45,12 +41,13 @@ callfest <- function (..., FUN=list, N=1) {
 ##' @return NULL
 ##' @export
 print.callfest <- function (x, ...) {
-  ## Get all results:
-  results <- x$results
+  ## Get the results and strip attributes:
+  results <- unclass(x)
+  attributes(results) <- NULL
 
   ## Print results
   print(results, ...)
 
   ## Print elapsed time:
-  cat(sprintf("Elapsed %f seconds\n", x$elapsed["elapsed"]))
+  cat(sprintf("Elapsed %f seconds\n", attr(x, "time")["elapsed"]))
 }
