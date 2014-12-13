@@ -1,0 +1,5 @@
+VERSION: 2014-12-13 ------- release/0.0-1
+
+* 2014-12-13 7a61ca6 Parallel calls are now possible (vst@vsthost.com)
+* 2014-12-13 547eca7 Changed the function signature and return value type (vst@vsthost.com)
+* 2014-12-13 aa9a42e Initial code commit (vst@vsthost.com)
