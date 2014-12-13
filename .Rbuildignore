@@ -1,1 +1,3 @@
 ^\.travis\.yml$
+changelog.sh
+README.md

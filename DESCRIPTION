@@ -7,6 +7,7 @@ Description: callfest provides functionality to test functions
     options for each named argument. This is useful for testing
     corner cases and doing some regression tests.
 Depends:
-    R (>= 3.1.0)
+    R (>= 3.1.0),
+    parallel
 License: GPL
 LazyData: true
