@@ -2,3 +2,5 @@
 
 S3method(print,callfest)
 export(callfest)
+export(callfestControl)
+import(parallel)

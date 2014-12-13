@@ -5,14 +5,13 @@
 \alias{callfest-package}
 \title{callfest.}
 \usage{
-callfest(..., FUN = list, N = 1)
+callfest(control, ...)
 }
 \arguments{
+\item{control}{A \code{callfestControl} object of a function to be
+applied to combinations.}
+
 \item{...}{List of arguments which will be used for combinations.}
-
-\item{FUN}{The function to be applied to combinations.}
-
-\item{N}{The number of function invokations to each of combinations.}
 }
 \value{
 An instance of class \code{callfest} which encapsulates
@@ -23,5 +22,15 @@ callfest.
 
 Calls a function over a list of arguments which are combinations
 of the provided dotted arguments.
+}
+\examples{
+## Create a control instance:
+control <- callfestControl(list, N=1, parallel=FALSE)
+
+## Call fest:
+result <- callfest(control, a=1:2, b=c("a", "b"))
+
+## This is equivalent to:
+result <- callfest(list, a=1:2, b=c("a", "b"))
 }
 
